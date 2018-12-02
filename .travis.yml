@@ -6,3 +6,13 @@ cache:
     - node_modules
 script:
   - npm run test && npm run build
+deploy:
+  - provider: s3
+    access_key_id: $EOH_ACCESS_KEY
+    secret_access_key: $EOH_SECRET_KEY
+    bucket: "www.volunteer.eohillinois.org"
+    skip_cleanup: true
+    region: us-east-2
+    local-dir: build
+    on:
+      branch: master
