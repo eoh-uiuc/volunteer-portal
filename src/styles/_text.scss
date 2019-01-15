@@ -2,6 +2,12 @@ a, p, span {
   font-family: 'Roboto';
 }
 
+p.error {
+  color: red;
+  font-size: 14px;
+  margin: 10px 0 0 0;
+}
+
 a {
   color: #007bff;
   text-decoration: none;

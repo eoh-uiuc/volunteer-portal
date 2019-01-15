@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
+import { login } from 'services/api/login';
 import './styles.scss';
 
 class Login extends Component {
@@ -14,22 +16,45 @@ class Login extends Component {
     this.state = {
       uid: '',
       pwd: '',
+      error: null,
+      redirect: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleChange(field) {
     return (e) => {
-      this.setState({ [field]: e.currentTarget.value });
+      this.setState({ error: null, [field]: e.currentTarget.value });
     }
   }
 
+  onSubmit() {
+    const { uid, pwd } = this.state;
+    const data = { uid, pwd };
+    login(data)
+      .then(res => {
+        if (res.status !== 200) {
+          this.setState({ error: res.message });
+        } else {
+          this.setState({ redirect: true });
+        }
+      })
+      .catch(res => {
+        this.setState({ error: 'An error occured, try again later' });
+      });
+  }
+
   render() {
+    const { redirect, error } = this.state;
     return (
       <div className="login form-wrapper">
+        { redirect && <Redirect to="/" /> }
         <Paper className="form">
           <Typography variant="h4">Login</Typography>
+
+          <p className="error">{error}</p>
 
           <form>
             <TextField
@@ -52,7 +77,7 @@ class Login extends Component {
               type="password"
             />
 
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={this.onSubmit}>
               Log In
             </Button>
           </form>

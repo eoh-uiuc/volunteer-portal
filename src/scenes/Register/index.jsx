@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -8,6 +9,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
+import { register } from 'services/api/register';
 import './styles.scss';
 
 class Register extends Component {
@@ -20,27 +22,50 @@ class Register extends Component {
       name: '',
       phone: '',
       society: '',
+      error: null,
+      redirect: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   handleChange(field) {
-    return (e) => { this.setState({ [field]: e.target.value }); }
+    return (e) => { this.setState({ error: null, [field]: e.target.value }); }
+  }
+
+  onSubmit() {
+    const { uid, pwd, name, phone, society } = this.state;
+    const data = { uid, pwd, name, phone, society };
+    register(data)
+      .then(res => {
+        if (res.status !== 200) {
+          this.setState({ error: res.message });
+        } else {
+          this.setState({ redirect: true });
+        }
+      })
+      .catch(res => {
+        this.setState({ error: 'An error occured, try again later' });
+      });
   }
 
   render() {
+    const { redirect, error, uid, pwd, name, phone, society } = this.state;
     return (
       <div className="register form-wrapper">
+        { redirect && <Redirect to="/" /> }
         <Paper className="form">
           <Typography variant="h4">Registration</Typography>
+
+          <p className="error">{error}</p>
 
           <form>
             <TextField
               id="netid"
               label="NetID"
               className="text-field"
-              value={this.state.uid}
+              value={uid}
               onChange={this.handleChange('uid')}
               margin="normal"
               type="text"
@@ -50,7 +75,7 @@ class Register extends Component {
               id="pwd"
               label="Password"
               className="text-field"
-              value={this.state.pwd}
+              value={pwd}
               onChange={this.handleChange('pwd')}
               margin="normal"
               type="password"
@@ -60,7 +85,7 @@ class Register extends Component {
               id="name"
               label="Name"
               className="text-field"
-              value={this.state.name}
+              value={name}
               onChange={this.handleChange('name')}
               margin="normal"
               type="text"
@@ -70,7 +95,7 @@ class Register extends Component {
               id="phone"
               label="Phone Number"
               className="text-field"
-              value={this.state.phone}
+              value={phone}
               onChange={this.handleChange('phone')}
               margin="normal"
               type="text"
@@ -79,7 +104,7 @@ class Register extends Component {
             <FormControl>
               <InputLabel htmlFor="society">Society</InputLabel>
               <Select
-                value={this.state.society}
+                value={society}
                 onChange={this.handleChange('society')}
               >
                 <MenuItem value="">None</MenuItem>
@@ -88,7 +113,7 @@ class Register extends Component {
               </Select>
             </FormControl>
 
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={this.onSubmit}>
               Register
             </Button>
           </form>

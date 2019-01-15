@@ -1,4 +1,0 @@
-
-const initialState = {
-  jwt: null,
-};
