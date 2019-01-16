@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -10,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import { register } from 'services/api/register';
+import { setJWT } from 'services/user/actions';
 import './styles.scss';
 
 class Register extends Component {
@@ -34,7 +36,8 @@ class Register extends Component {
     return (e) => { this.setState({ error: null, [field]: e.target.value }); }
   }
 
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault();
     const { uid, pwd, name, phone, society } = this.state;
     const data = { uid, pwd, name, phone, society };
     register(data)
@@ -42,10 +45,12 @@ class Register extends Component {
         if (res.status !== 200) {
           this.setState({ error: res.message });
         } else {
+          this.props.setJWT(res.auth_token);
           this.setState({ redirect: true });
         }
       })
       .catch(res => {
+        console.log(res);
         this.setState({ error: 'An error occured, try again later' });
       });
   }
@@ -113,7 +118,7 @@ class Register extends Component {
               </Select>
             </FormControl>
 
-            <Button variant="contained" color="primary" onClick={this.onSubmit}>
+            <Button variant="contained" color="primary" onClick={this.onSubmit} type="submit">
               Register
             </Button>
           </form>
@@ -123,4 +128,7 @@ class Register extends Component {
   }
 }
 
-export default Register;
+const mapDispatchToProps = dispatch => ({
+  setJWT: jwt => dispatch(setJWT(jwt)),
+});
+export default connect(undefined, mapDispatchToProps)(Register);

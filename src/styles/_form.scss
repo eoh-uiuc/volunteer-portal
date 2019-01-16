@@ -1,12 +1,22 @@
-.form {
-  padding: 20px 5px;
-  margin: 15px;
+.form-wrapper {
+  text-align: center;
 
-  form {
-    display: flex;
-    flex-direction: column;
+  p.error {
+    color: red;
+    font-size: 14px;
+    margin: 10px 0 0 0;
+  }
 
-    > div { margin: 5px 30px; }
-    > button { margin: 28px 30px 5px 30px; }
+  .form {
+    padding: 20px 5px;
+    margin: 15px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      > div { margin: 5px 30px; }
+      > button { margin: 28px 30px 5px 30px; }
+    }
   }
 }

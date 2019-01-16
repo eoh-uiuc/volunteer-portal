@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import { login } from 'services/api/login';
+import { setJWT } from 'services/user/actions';
 import './styles.scss';
 
 class Login extends Component {
@@ -30,7 +31,8 @@ class Login extends Component {
     }
   }
 
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault();
     const { uid, pwd } = this.state;
     const data = { uid, pwd };
     login(data)
@@ -38,6 +40,7 @@ class Login extends Component {
         if (res.status !== 200) {
           this.setState({ error: res.message });
         } else {
+          this.props.setJWT(res.auth_token);
           this.setState({ redirect: true });
         }
       })
@@ -77,7 +80,7 @@ class Login extends Component {
               type="password"
             />
 
-            <Button variant="contained" color="primary" onClick={this.onSubmit}>
+            <Button variant="contained" color="primary" onClick={this.onSubmit} type="submit">
               Log In
             </Button>
           </form>
@@ -91,4 +94,7 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  setJWT: jwt => dispatch(setJWT(jwt)),
+});
+export default connect(undefined, mapDispatchToProps)(Login);
