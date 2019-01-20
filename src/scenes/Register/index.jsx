@@ -113,8 +113,9 @@ class Register extends Component {
                 onChange={this.handleChange('society')}
               >
                 <MenuItem value="">None</MenuItem>
-                <MenuItem value="eoh">EOH</MenuItem>
-                <MenuItem value="bngr">Bhangra</MenuItem>
+                <MenuItem value="acm">ACM</MenuItem>
+                <MenuItem value="baja">BAJA</MenuItem>
+                <MenuItem value="bmes">BMES</MenuItem>
               </Select>
             </FormControl>
 
