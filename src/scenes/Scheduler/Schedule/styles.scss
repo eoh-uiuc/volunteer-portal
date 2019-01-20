@@ -1,0 +1,116 @@
+$cell-width: 140px;
+$cell-height: 40px;
+$offset-top: 60px;
+
+.day {
+  background-color: white;
+  display: flex;
+  box-shadow: 1px 1px 8px #ccc;
+  flex-direction: row;
+  margin: 30px 60px;
+
+  .times {
+    box-shadow: 3px 0px 4px #ddd;
+    min-width: 120px;
+    padding-top: $offset-top;
+    width: 120px;
+
+    .time-marker {
+      border-bottom: 1px solid #eee;
+      box-sizing: border-box;
+      height: $cell-height;
+      &:last-child { border: none; }
+
+      p {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: $cell-height;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  .scrollable {
+    overflow-x: scroll;
+
+    .station-titles {
+      display: flex;
+      flex-direction: row;
+      height: $offset-top;
+
+      .station-title {
+        border-right: 1px solid #eee;
+        box-sizing: border-box;
+        font-weight: 500;
+        min-width: $cell-width;
+        padding: 5px 12px;
+        text-align: center;
+        width: $cell-width;
+
+        &.double {
+          min-width: 2 * $cell-width;
+          width: 2 * $cell-width;
+        }
+      }
+    }
+  }
+
+  .columns {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .cell {
+    background-color: #aaf1c8;
+    border: 1px solid #6FCF97;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: $cell-height;
+    position: relative;
+    width: $cell-width;
+
+    &.invalid {
+      background-color: #d8d8d8;
+      border: 1px solid #ccc;
+      cursor: unset;
+    }
+    &.registered {
+      background-color: #4dd0e1;
+      border: 1px solid #009faf;
+    }
+    &.double { height: 2 * $cell-height; }
+
+    p {
+      bottom: 2px;
+      color: #444;
+      font: {
+        size: 13px;
+        weight: 500;
+      }
+      position: absolute;
+      right: 4px;
+    }
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  line-height: 1.4;
+  margin: auto;
+
+  .left {
+    color: #222;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .right {
+    color: #555;
+  }
+
+  .left, .right {
+    padding: 10px;
+    min-width: 150px;
+  }
+}
