@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { register } from 'services/api/register';
 import { setJWT } from 'services/user/actions';
+import societies from './societies';
 import './styles.scss';
 
 class Register extends Component {
@@ -50,13 +51,15 @@ class Register extends Component {
         }
       })
       .catch(res => {
-        console.log(res);
         this.setState({ error: 'An error occured, try again later' });
       });
   }
 
   render() {
     const { redirect, error, uid, pwd, name, phone, society } = this.state;
+
+    const menuItems = societies.map(s => <MenuItem value={s} key={s}>{s}</MenuItem>);
+
     return (
       <div className="register form-wrapper">
         { redirect && <Redirect to="/" /> }
@@ -113,9 +116,7 @@ class Register extends Component {
                 onChange={this.handleChange('society')}
               >
                 <MenuItem value="">None</MenuItem>
-                <MenuItem value="acm">ACM</MenuItem>
-                <MenuItem value="baja">BAJA</MenuItem>
-                <MenuItem value="bmes">BMES</MenuItem>
+                { menuItems }
               </Select>
             </FormControl>
 
