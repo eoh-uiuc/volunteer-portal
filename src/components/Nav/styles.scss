@@ -1,0 +1,13 @@
+header.nav {
+  position: absolute;
+
+  .grow {
+    flex-grow: 1;
+  }
+
+  a {
+    color: white;
+    font-weight: 500;
+    margin: 0 10px;
+  }
+}

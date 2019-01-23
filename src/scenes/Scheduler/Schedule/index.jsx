@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 
@@ -31,7 +30,14 @@ class Schedule extends Component {
 
     return (
       <div className="schedule">
-        <AppBar position="static">
+        {value === 0 && <Day data={timeslots['03/05/2019']} />}
+        {value === 1 && <Day data={timeslots['03/06/2019']} />}
+        {value === 2 && <Day data={timeslots['03/07/2019']} />}
+        {value === 3 && <Day data={timeslots['03/08/2019']} />}
+        {value === 4 && <Day data={timeslots['03/09/2019']} />}
+        {value === 5 && <Day data={timeslots['03/10/2019']} />}
+
+        <div className="date-nav">
           <Tabs value={value} onChange={this.handleChange} centered>
             <Tab label="March 5th" />
             <Tab label="March 6th" />
@@ -40,13 +46,7 @@ class Schedule extends Component {
             <Tab label="March 9th" />
             <Tab label="March 10th" />
           </Tabs>
-        </AppBar>
-        {value === 0 && <Day data={timeslots['03/05/2019']} />}
-        {value === 1 && <Day data={timeslots['03/06/2019']} />}
-        {value === 2 && <Day data={timeslots['03/07/2019']} />}
-        {value === 3 && <Day data={timeslots['03/08/2019']} />}
-        {value === 4 && <Day data={timeslots['03/09/2019']} />}
-        {value === 5 && <Day data={timeslots['03/10/2019']} />}
+        </div>
 
         <Details />
       </div>

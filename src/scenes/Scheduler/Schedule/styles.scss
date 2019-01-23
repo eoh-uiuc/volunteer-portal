@@ -1,13 +1,21 @@
-$cell-width: 140px;
-$cell-height: 40px;
+$cell-width: 105px;
+$cell-height: 36px;
 $offset-top: 60px;
+
+.schedule {
+  padding-top: 95px;
+
+  .app-bar {
+    bottom: 0;
+  }
+}
 
 .day {
   background-color: white;
-  display: flex;
   box-shadow: 1px 1px 8px #ccc;
+  display: flex;
   flex-direction: row;
-  margin: 30px 60px;
+  margin: 0 60px 90px 60px;
 
   .times {
     box-shadow: 3px 0px 4px #ddd;
@@ -113,4 +121,14 @@ $offset-top: 60px;
     padding: 10px;
     min-width: 150px;
   }
+}
+
+.date-nav {
+  background-color: white;
+  box-shadow: 1px 1px 9px #aaa;
+  height: 48px;
+  left: 1%;
+  position: fixed;
+  top: calc(100vh - 74px);
+  width: 98%;
 }
