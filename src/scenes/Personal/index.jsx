@@ -81,6 +81,18 @@ class Personal extends Component {
       );
     });
 
+    if (cards.length === 0) {
+      cards.push(
+        <Card className="time-card" key="singleton">
+          <CardContent>
+            <Typography variant="h5" component="h2">
+              Not registered for any timeslots :(
+            </Typography>
+          </CardContent>
+        </Card>
+      )
+    }
+
     return (
       <div className="time-cards">
         { cards }
