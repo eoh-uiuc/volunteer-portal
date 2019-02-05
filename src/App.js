@@ -6,6 +6,7 @@ import Home from 'scenes/Home';
 import Login from 'scenes/Login';
 import Register from 'scenes/Register';
 import Personal from 'scenes/Personal';
+import Information from 'scenes/Information';
 import Nav from 'components/Nav';
 import store from './services/store';
 
@@ -18,6 +19,7 @@ class App extends Component {
             <Nav />
             <Route path="/" exact component={Home} />
             <Route path="/schedule" exact component={Personal} />
+            <Route path="/information" exact component={Information} />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
           </div>

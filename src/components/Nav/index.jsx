@@ -16,8 +16,13 @@ class Nav extends Component {
             EOH Volunteer Portal
           </Typography>
 
-          { this.props.jwt && <Link to="/">Timeslots</Link> }
-          { this.props.jwt && <Link to="/schedule">Your Schedule</Link> }
+          { this.props.jwt &&
+            <>
+              <Link to="/">Timeslots</Link>
+              <Link to="/schedule">Your Schedule</Link>
+              <Link to="/information">Information</Link>
+            </>
+          }
         </Toolbar>
       </AppBar>
     );
