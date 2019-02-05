@@ -14,6 +14,13 @@ class Information extends Component {
       <div className="info container">
         <Typography variant="display1">EOH 2019: Volunteer Descriptions</Typography>
 
+        <Typography variant="body1" className="desc">
+          Volunteers are an integral part of making EOH a success. This year we need
+          YOUR help us make the experience possible. Volunteer check-in and check-out
+          will take place at the EOH Visitor’s Information Tent on Bardeen Quad.
+          We need volunteers for the following positions:
+        </Typography>
+
         <div className="panels">
           {
             positions.map(({ position, description}) => (
