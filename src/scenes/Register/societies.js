@@ -33,7 +33,7 @@ const societies = [
   'IAC',
   'IBI',
   'IEEE',
-  'IEEE',
+  'IEEE PELS',
   'IFE',
   'IISE',
   'INFORMS',
