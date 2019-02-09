@@ -43,8 +43,8 @@ class Personal extends Component {
   }
 
   render() {
-    const { jwt, removeTime } = this.props;
-    if (jwt === null) {
+    const { jwt, removeTime, uid } = this.props;
+    if (jwt === null || uid === null) {
       return <Redirect to="/login" />;
     }
 
@@ -92,12 +92,11 @@ class Personal extends Component {
         </Card>
       )
     }
-    var uid = "uid string";
 
     return (
       <div className="time-cards">
         <div className="QR">
-          <QRCode value= {jwt} size={300} />
+          <QRCode value= {uid} size={300} />
         </div>
         { cards }
       </div>
@@ -109,6 +108,7 @@ const mapStateToProps = state => ({
   registeredIDs: state.registered.data,
   timeslots: state.timeslots.data,
   jwt: state.user.jwt,
+  uid: state.user.uid,
 });
 
 const mapDispatchToProps = dispatch => ({

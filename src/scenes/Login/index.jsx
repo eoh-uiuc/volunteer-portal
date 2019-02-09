@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { login } from 'services/api/login';
 import { setJWT } from 'services/user/actions';
+import { setUID } from 'services/user/actions';
 import './styles.scss';
 
 class Login extends Component {
@@ -41,6 +42,7 @@ class Login extends Component {
           this.setState({ error: res.message });
         } else {
           this.props.setJWT(res.auth_token);
+          this.props.setUID(uid);
           this.setState({ redirect: true });
         }
       })
@@ -96,5 +98,6 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => ({
   setJWT: jwt => dispatch(setJWT(jwt)),
+  setUID: uid => dispatch(setUID(uid)),
 });
 export default connect(undefined, mapDispatchToProps)(Login);

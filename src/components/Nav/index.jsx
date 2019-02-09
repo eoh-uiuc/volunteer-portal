@@ -16,7 +16,7 @@ class Nav extends Component {
             EOH Volunteer Portal
           </Typography>
 
-          { this.props.jwt &&
+          { this.props.jwt && this.props.uid &&
             <>
               <Link to="/">Timeslots</Link>
               <Link to="/schedule">Your Schedule</Link>
@@ -31,5 +31,6 @@ class Nav extends Component {
 
 const mapStateToProps = state => ({
   jwt: state.user.jwt,
+  uid: state.user.uid,
 });
 export default connect(mapStateToProps)(Nav);

@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { register } from 'services/api/register';
 import { setJWT } from 'services/user/actions';
+import { setUID } from 'services/user/actions';
 import societies from './societies';
 import './styles.scss';
 
@@ -132,5 +133,6 @@ class Register extends Component {
 
 const mapDispatchToProps = dispatch => ({
   setJWT: jwt => dispatch(setJWT(jwt)),
+  setUID: uid => dispatch(setUID(uid)),
 });
 export default connect(undefined, mapDispatchToProps)(Register);

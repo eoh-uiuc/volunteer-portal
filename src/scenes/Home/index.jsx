@@ -6,7 +6,8 @@ import Scheduler from 'scenes/Scheduler';
 
 class Home extends Component {
   render() {
-    const { jwt } = this.props;
+    const { jwt, uid } = this.props;
+    console.log(uid);
     if (jwt === null) {
       return <Redirect to="/login" />;
     }
@@ -16,5 +17,6 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   jwt: state.user.jwt,
+  uid: state.user.uid,
 });
 export default connect(mapStateToProps)(Home);
