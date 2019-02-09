@@ -6,7 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import QRCode from 'qrcode.react';
 import { removeTimeslot } from 'services/active/actions';
 import { stationMap } from 'scenes/Scheduler/Schedule/stations';
 import { times, timeMap } from 'scenes/Scheduler/Schedule/Day';
@@ -92,9 +92,13 @@ class Personal extends Component {
         </Card>
       )
     }
+    var uid = "uid string";
 
     return (
       <div className="time-cards">
+        <div className="QR">
+          <QRCode value= {jwt} size={300} />
+        </div>
         { cards }
       </div>
     );
