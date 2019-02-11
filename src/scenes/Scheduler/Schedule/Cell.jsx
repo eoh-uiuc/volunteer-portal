@@ -21,8 +21,9 @@ class Cell extends Component {
 
     const dcn = duration === 1 ? 'single' : 'double';
     const rcn = isRegistered ? 'registered' : 'unregistered';
+    const fcn = remaining === 0 ? 'full' : 'underfull';
     return (
-      <div className={`cell ${dcn} ${rcn}`} onClick={this.onClick}>
+      <div className={`cell ${dcn} ${rcn} ${fcn}`} onClick={this.onClick}>
         <p>{ taken }/{ cap }</p>
       </div>
     );

@@ -12,7 +12,7 @@ class Schedule extends Component {
     super();
 
     this.state = {
-      value: 0,
+      value: 3,
     };
   }
 

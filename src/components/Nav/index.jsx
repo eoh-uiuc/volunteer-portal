@@ -12,9 +12,11 @@ class Nav extends Component {
     return (
       <AppBar position="static" className="nav">
         <Toolbar>
-          <Typography variant="h6" color="inherit" className="grow">
-            EOH Volunteer Portal
-          </Typography>
+          <Link to="/" className="grow">
+            <Typography variant="h6" color="inherit">
+              EOH Volunteer Portal
+            </Typography>
+          </Link>
 
           { this.props.jwt &&
             <>

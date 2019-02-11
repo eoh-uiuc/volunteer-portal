@@ -82,6 +82,10 @@ $offset-top: 60px;
       border: 1px solid #ccc;
       cursor: unset;
     }
+    &.full {
+      background-color: #ff867c;
+      border: 1px solid #ef5350;
+    }
     &.registered {
       background-color: #4dd0e1;
       border: 1px solid #009faf;
