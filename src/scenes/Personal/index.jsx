@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import QRCode from 'qrcode.react';
+import jwt_decode from 'jwt-decode';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -95,6 +97,9 @@ class Personal extends Component {
 
     return (
       <div className="time-cards">
+        <div className="QR">
+          <QRCode value={jwt_decode(jwt).sub} size={300}/>
+        </div>
         { cards }
       </div>
     );
