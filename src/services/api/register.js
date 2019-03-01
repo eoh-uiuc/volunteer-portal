@@ -1,4 +1,4 @@
-const endpoint = `${process.env.REACT_APP_API}/register/`;
+const endpoint = `https://api.eohillinois.org/register/`;
 
 export const register = (body) => {
   const data = new URLSearchParams();

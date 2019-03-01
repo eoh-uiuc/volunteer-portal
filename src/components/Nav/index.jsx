@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -23,6 +24,11 @@ class Nav extends Component {
               <Link to="/">Timeslots</Link>
               <Link to="/schedule">Your Schedule</Link>
               <Link to="/information">Information</Link>
+            </>
+          }
+          { this.props.jwt && (jwt_decode(this.props.jwt).sub === "admin" || jwt_decode(this.props.jwt).sub === "devyesh2") &&
+            <>
+              <Link to="/Checkin">Checkin</Link>
             </>
           }
         </Toolbar>

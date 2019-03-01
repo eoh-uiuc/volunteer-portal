@@ -7,6 +7,7 @@ import Login from 'scenes/Login';
 import Register from 'scenes/Register';
 import Personal from 'scenes/Personal';
 import Information from 'scenes/Information';
+import Checkin from 'scenes/Checkin';
 import Nav from 'components/Nav';
 import store from './services/store';
 
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path="/information" exact component={Information} />
             <Route path="/login" exact component={Login} />
             <Route path="/register" exact component={Register} />
+            <Route path="/checkin" exact component={Checkin} />
           </div>
         </BrowserRouter>
       </Provider>

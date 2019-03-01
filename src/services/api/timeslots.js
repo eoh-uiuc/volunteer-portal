@@ -16,7 +16,7 @@ const processTimeslots = (data) => {
 }
 
 export const getAllTimeslots = () => {
-  return fetch(`${process.env.REACT_APP_API}/get_all_timeslots/`, {
+  return fetch(`https://api.eohillinois.org/get_all_timeslots/`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -44,7 +44,7 @@ const mutateTimeslot = (endpoint, tsid) => {
   data.append('auth_token', store.getState().user.jwt);
   data.append('tsid', tsid);
 
-  return fetch(`${process.env.REACT_APP_API}/${endpoint}/`, {
+  return fetch(`https://api.eohillinois.org/${endpoint}/`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -69,7 +69,7 @@ const extractIDs = (data) => {
 }
 
 export const getRegisteredTimeslots = () => {
-  return fetch(`${process.env.REACT_APP_API}/get_timeslots/`, {
+  return fetch(`https://api.eohillinois.org/get_timeslots/`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
