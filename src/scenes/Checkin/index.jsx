@@ -33,7 +33,7 @@ class Checkin extends Component {
   render() {
     const { jwt } = this.props;
     if (jwt === null) {
-      return <Redirect to="/login" />;
+    //  return <Redirect to="/login" />;
     }
 
 
