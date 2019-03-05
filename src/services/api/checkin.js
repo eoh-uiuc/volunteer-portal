@@ -6,8 +6,6 @@ export const checkOut = (netid, time) => {
 }
 
 const checkInOut = (endpoint, netid, time) => {
-
-
   const data = new URLSearchParams();
   data.append('uid', netid);
   data.append('time', time);
@@ -18,23 +16,11 @@ const checkInOut = (endpoint, netid, time) => {
         Accept: 'application/json'
       },
       body: data
-      /*body: JSON.stringify({
-        uid: netid,
-        time: time,
-      })*/
   }).then(response => response.json())
     .then(data => {
       if (data.status !== 200) {
         throw new Error(data.message);
-      } else {
-        console.log("Successful hitting of endpoint: " + `${endpoint}`);
-        console.log(data.data);
       }
       return data.data;
     });
 }
-/*
-body: JSON.stringify({
-  firstParam: 'yourValue',
-  secondParam: 'yourOtherValue',
-})*/
