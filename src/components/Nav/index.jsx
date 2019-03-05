@@ -18,7 +18,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import './styles.scss';
 
-const ADMINS = ['admin', 'devyesh2'];
+const ADMINS = ['admin', 'devyesh2', 'checkin'];
 
 const SideList = (props) => {
   return (
