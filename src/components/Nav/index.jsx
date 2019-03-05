@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 import AppBar from '@material-ui/core/AppBar';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,25 +17,21 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CheckinIcon from '@material-ui/icons/Whatshot';
 import LogoutIcon from '@material-ui/icons/KeyboardBackspace';
 
+import { withAdmin } from 'components/Auth';
 import { clearJWT as clearJWTAction } from 'services/user/actions';
 
 import './styles.scss';
 
-const ADMINS = [
-  'admin',
-  'devyesh2',
-  'checkin',
-  'jjxu3',
-  'rsurti2',
-  'mnwilso2',
-  'bharath3',
-  'arasteh2',
-  'snagar8',
-  'mgale2',
-  'painap2',
-  'tjavid2',
-  'sujalfs2'
-];
+const Checkin = withAdmin(() => (
+  <Link to="/Checkin">
+    <ListItem button>
+      <ListItemIcon>
+        <CheckinIcon />
+      </ListItemIcon>
+      <ListItemText primary="Checkin" />
+    </ListItem>
+  </Link>
+), false);
 
 const SideList = (props) => {
   return (
@@ -65,18 +60,7 @@ const SideList = (props) => {
           <ListItemText primary="Information" />
         </ListItem>
       </Link>
-
-      { props.admin &&
-        <Link to="/Checkin">
-          <ListItem button>
-            <ListItemIcon>
-              <CheckinIcon />
-            </ListItemIcon>
-            <ListItemText primary="Checkin" />
-          </ListItem>
-        </Link>
-      }
-
+      <Checkin />
       <ListItem button onClick={() => props.clearJWT()} >
         <ListItemIcon>
           <LogoutIcon />
@@ -89,10 +73,6 @@ const SideList = (props) => {
 
 const Nav = (props) => {
   const [ open, setOpen ] = useState(false);
-  let user = '';
-  if (props.jwt) {
-    user = jwt_decode(props.jwt).sub;
-  }
 
   return (
     <Fragment>
@@ -103,7 +83,7 @@ const Nav = (props) => {
           onClick={() => setOpen(false)}
           onKeyDown={() => setOpen(false)}
         >
-          <SideList admin={ADMINS.indexOf(user) >= 0} clearJWT={props.clearJWT} />
+          <SideList clearJWT={props.clearJWT} />
         </div>
       </Drawer>
 

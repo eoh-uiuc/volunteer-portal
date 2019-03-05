@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import QrReader from 'react-qr-reader';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,21 +7,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import QrReader from 'react-qr-reader';
+import { withAdmin } from 'components/Auth';
 import { checkIn, checkOut } from 'services/api/checkin';
 
 import './styles.scss';
 
 const DELAY = 100;
 
-const Checkin = (props) => {
+const Checkin = () => {
   const [ result, setResult ] = useState(null);
   const [ error, setError ] = useState(null);
-
-  const { jwt } = props;
-  if (jwt === null) {
-    return <Redirect to="/login" />;
-  }
 
   const handleScan = (data) => {
     if (data) {
@@ -79,9 +73,4 @@ const Checkin = (props) => {
   );
 };
 
-const mapStateToProps = state => ({
-  jwt: state.user.jwt,
-});
-
-
-export default connect(mapStateToProps)(Checkin);
+export default withAdmin(Checkin, true);
