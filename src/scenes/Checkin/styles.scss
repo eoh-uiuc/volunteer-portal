@@ -1,8 +1,16 @@
 .QrReader {
-  padding: 100px 100px 20px 100px;
-//  margin: auto;
-//  text-align: center;
-//  display: inline-block;
+    padding: 50px;
+    margin: auto;
+    width: 500px;
+    height: 500px;
+    border-radius: 3px;
+    background-color: #ccc;
+
+  }
+
+.Buttons {
+  height: 100 px;
+  padding: 40px 20px 20px 20px;
 }
 
 .parent {

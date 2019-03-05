@@ -47,11 +47,13 @@ class Checkin extends Component {
                 delay={this.state.delay}
                 onError={this.handleError}
                 onScan={this.handleScan}
-                style={{ width: "40%" }}
+                style={{ width: "100%" }}
                 />
-                <p>{this.state.result}</p>
-                <p>"Current Time: "{dateTime}</p>
-                <p>"User netID: {this.state.result}</p>
+                <div>
+                  <p>{this.state.result}</p>
+                  <p>"Current Time: "{dateTime}</p>
+                  <p>"User netID: {this.state.result}</p>
+                </div>
             </div>
             <div className="Buttons">
               <Button variant="contained" color="primary" onClick={() => {checkIn(this.state.result, dateTime)}}>

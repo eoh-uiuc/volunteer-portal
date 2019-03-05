@@ -1,4 +1,4 @@
-const endpoint = `https://api.eohillinois.org/login/`;
+const endpoint = `${process.env.REACT_APP_API}/login/`;
 
 export const login = (body) => {
   const data = new URLSearchParams();
