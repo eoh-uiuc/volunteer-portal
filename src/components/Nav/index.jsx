@@ -15,6 +15,10 @@ import ClockIcon from '@material-ui/icons/AccessTime';
 import EventIcon from '@material-ui/icons/Event';
 import BallotIcon from '@material-ui/icons/Ballot';
 import MenuIcon from '@material-ui/icons/Menu';
+import CheckinIcon from '@material-ui/icons/Whatshot';
+import LogoutIcon from '@material-ui/icons/KeyboardBackspace';
+
+import { clearJWT as clearJWTAction } from 'services/user/actions';
 
 import './styles.scss';
 
@@ -63,12 +67,19 @@ const SideList = (props) => {
         <Link to="/Checkin">
           <ListItem button>
             <ListItemIcon>
-              <BallotIcon />
+              <CheckinIcon />
             </ListItemIcon>
             <ListItemText primary="Checkin" />
           </ListItem>
         </Link>
       }
+
+      <ListItem button onClick={() => props.clearJWT()} >
+        <ListItemIcon>
+          <LogoutIcon />
+        </ListItemIcon>
+        <ListItemText primary="Log Out" />
+      </ListItem>
     </List>
   );
 }
@@ -89,7 +100,7 @@ const Nav = (props) => {
           onClick={() => setOpen(false)}
           onKeyDown={() => setOpen(false)}
         >
-          <SideList admin={ADMINS.indexOf(user) >= 0} />
+          <SideList admin={ADMINS.indexOf(user) >= 0} clearJWT={props.clearJWT} />
         </div>
       </Drawer>
 
@@ -115,4 +126,7 @@ const Nav = (props) => {
 const mapStateToProps = state => ({
   jwt: state.user.jwt,
 });
-export default connect(mapStateToProps)(Nav);
+const mapDispatchToProps = {
+  clearJWT: clearJWTAction,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

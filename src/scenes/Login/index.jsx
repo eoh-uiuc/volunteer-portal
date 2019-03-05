@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -23,6 +24,16 @@ class Login extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt && jwt !== 'null') {
+      if (jwtDecode(jwt).exp > (new Date()).getTime() / 1000) {
+        this.props.setJWT(jwt);
+        this.setState({ redirect: true });
+      }
+    }
   }
 
   handleChange(field) {
