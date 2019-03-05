@@ -103,6 +103,14 @@ $offset-top: 60px;
       right: 4px;
     }
   }
+
+  @media (max-width: 768px) {
+    margin: 0 10px 90px 10px;
+    .times {
+      min-width: 80px;
+      width: 80px;
+    }
+  }
 }
 
 .details {
