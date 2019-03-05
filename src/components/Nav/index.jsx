@@ -34,7 +34,8 @@ const ADMINS = [
   'snagar8',
   'mgale2',
   'painap2',
-  'tjavid2'
+  'tjavid2',
+  'sujalfs2'
 ];
 
 const SideList = (props) => {

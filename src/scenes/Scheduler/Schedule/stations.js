@@ -5,7 +5,7 @@ export const stations = [
   { name: 'General Volunteers', key: 'general_volunteers' },
   { name: 'HSDC', key: 'hsdc' },
   { name: 'Illini Engineering Challenge', key: 'illini_engineering_challenge' },
-  { name: 'Judging Assitants', key: 'judging_assistant' },
+  { name: 'Judging Assistants', key: 'judging_assistant' },
   { name: 'Merchandise', key: 'merchandise' },
   { name: 'MRDC', key: 'mrdc' },
   { name: 'MSDC', key: 'msdc' },
