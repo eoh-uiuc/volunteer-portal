@@ -10,7 +10,7 @@ const REFRESH_INTERVAL = 15000;
 class Scheduler extends Component {
   componentDidMount() {
     this.props.getTimeslots();
-    this.props.getReigstered();
+    this.props.getRegistered();
 
     this.refreshInterval = setInterval(this.props.getTimeslots, REFRESH_INTERVAL);
   }
@@ -23,11 +23,8 @@ class Scheduler extends Component {
     return <Schedule />;
   }
 }
-
-const mapStateToProps = state => ({
-});
-const mapDispatchToProps = dispatch => ({
-  getTimeslots: () => dispatch(getTimeslots()),
-  getReigstered: () => dispatch(getRegisteredTimeslots()),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Scheduler);
+const mapDispatchToProps = {
+  getTimeslots,
+  getRegistered: getRegisteredTimeslots,
+};
+export default connect(undefined, mapDispatchToProps)(Scheduler);

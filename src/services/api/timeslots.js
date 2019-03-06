@@ -83,3 +83,19 @@ export const getRegisteredTimeslots = () => {
       return extractIDs(data.data);
     });
 }
+
+export const getTimeslotDetails = (tsid) => {
+  return fetch(`${process.env.REACT_APP_API}/get_timeslot_details/?tsid=${tsid}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: store.getState().user.jwt,
+    },
+  }).then(response => response.json())
+    .then(data => {
+      if (data.status !== 200) {
+        throw new Error(data.message);
+      }
+      return data.data;
+    });
+}

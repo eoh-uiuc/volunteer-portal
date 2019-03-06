@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { withAdmin } from 'components/Auth';
 import { closeActive, addTimeslot, removeTimeslot } from 'services/active/actions';
 import { stationMap } from './stations';
 import { times, timeMap } from './Day';
+
+const AdminDetails = withAdmin(props => {
+  const { tsid, close } = props;
+  return (
+    <DialogContent className="admin">
+      <Link to={`/admin/timeslot/${tsid}`}>
+        <Button color="secondary" variant="contained" onClick={close}>
+          View Admin Details
+        </Button>
+      </Link>
+    </DialogContent>
+  );
+}, false);
 
 class Details extends Component {
   register = () => {
@@ -27,7 +42,7 @@ class Details extends Component {
     const { close, data, registeredIDs } = this.props;
     const open = data !== null;
 
-    let position, day, time, duration, remaining;
+    let position, day, time, duration, remaining, tsid;
     let canRegister, isRegistered;
     if (data) {
       position = stationMap[data.position];
@@ -35,6 +50,7 @@ class Details extends Component {
       time = times[timeMap[data.time]].display;
       duration = data.duration === 1 ? '1 Hour' : '2 Hours';
       remaining = data.taken;
+      tsid = data.tsid;
 
       isRegistered = registeredIDs.indexOf(data.tsid) >= 0;
       canRegister = remaining > 0 && !isRegistered;
@@ -63,6 +79,7 @@ class Details extends Component {
             <p>{remaining}</p>
           </div>
         </DialogContent>
+        <AdminDetails tsid={tsid} close={close} />
         <DialogActions>
           <Button onClick={close} color="primary">
             Cancel
