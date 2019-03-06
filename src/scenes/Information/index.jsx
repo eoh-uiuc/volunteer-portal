@@ -17,7 +17,8 @@ class Information extends Component {
         <Typography variant="body1" className="desc">
           Volunteers are an integral part of making EOH a success. This year we need
           YOUR help us make the experience possible. Volunteer check-in and check-out
-          will take place at the EOH Visitor’s Information Tent on Bardeen Quad.
+          will take place at the EOH Visitor’s Information Tent on Bardeen Quad
+          (For MRDC, go directly to the Kenney Gym).
           We need volunteers for the following positions:
         </Typography>
 
