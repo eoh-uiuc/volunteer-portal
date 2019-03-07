@@ -38,17 +38,19 @@ const Timeslot = (props) => {
               <TableCell>Name</TableCell>
               <TableCell>Phone</TableCell>
               <TableCell>Society</TableCell>
+              <TableCell>Checked In</TableCell>
             </TableRow>
           </TableHead>
           <TableBody className="ts-body">
             {slot.registered.map(u => {
-              const { uid, name, phone, society } = u;
+              const { uid, name, phone, society, checkedin } = u;
               return (
                 <TableRow key={uid}>
                   <TableCell component="td" scope="row">{uid}</TableCell>
                   <TableCell component="td" scope="row">{name}</TableCell>
                   <TableCell component="td" scope="row">{phone}</TableCell>
                   <TableCell component="td" scope="row">{society}</TableCell>
+                  <TableCell component="td" scope="row">{checkedin.toString()}</TableCell>
                 </TableRow>
               );
             })}

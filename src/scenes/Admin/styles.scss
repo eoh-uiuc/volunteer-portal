@@ -2,9 +2,14 @@
   padding-top: 80px;
   overflow: scroll;
 
-  .timeslot .ts-table {
-    .ts-head th, .ts-body td {
-      padding: 2px 15px;
+  .timeslot {
+    box-sizing: border-box;
+    @media (max-width: 576px) { min-width: 500px; padding: 0; }
+
+    .ts-table {
+      .ts-head th, .ts-body td {
+        padding: 2px 15px;
+      }
     }
   }
 }
