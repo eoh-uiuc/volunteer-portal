@@ -16,9 +16,12 @@ const DELAY = 100;
 
 const Checkin = () => {
   const [ result, setResult ] = useState(null);
+  const [ status, setStatus ] = useState(null);
   const [ error, setError ] = useState(null);
 
   const handleScan = (data) => {
+    if (status !== null) { return; }
+
     if (data) {
       setResult(data);
       setError(null);
@@ -27,15 +30,20 @@ const Checkin = () => {
   const handleError = (err) => {
     console.error(err);
   }
-  const closeDialog = () => setResult(null);
   const checkInClick = () => {
     checkIn(result, (new Date()).getTime().toString())
-      .then(() => setResult(null))
+      .then(() => {
+        setResult(null);
+        setStatus('Volunteer checked in!');
+      })
       .catch((e) => setError(e.message));
   }
   const checkOutClick = () => {
     checkOut(result, (new Date()).getTime().toString())
-      .then(() => setResult(null))
+      .then(() => {
+        setResult(null);
+        setStatus('Volunteer checked out!');
+      })
       .catch((e) => setError(e.message));
   }
 
@@ -52,7 +60,7 @@ const Checkin = () => {
 
       <Dialog
         open={result !== null}
-        onClose={closeDialog}
+        onClose={() => setResult(null)}
       >
         <DialogTitle id="alert-dialog-title">{result}</DialogTitle>
         <DialogContent>
@@ -66,6 +74,24 @@ const Checkin = () => {
           </Button>
           <Button onClick={checkOutClick} color="primary" autoFocus>
             Check Out
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+
+      <Dialog
+        open={status !== null}
+        onClose={() => setStatus(null)}
+      >
+        <DialogTitle id="alert-dialog-title">Success</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {status}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setStatus(null)} color="secondary" autoFocus>
+            Close
           </Button>
         </DialogActions>
       </Dialog>
