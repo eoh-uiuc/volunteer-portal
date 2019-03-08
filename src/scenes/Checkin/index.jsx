@@ -6,6 +6,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 import { withAdmin } from 'components/Auth';
 import { checkIn, checkOut } from 'services/api/checkin';
@@ -18,6 +20,7 @@ const Checkin = () => {
   const [ result, setResult ] = useState(null);
   const [ status, setStatus ] = useState(null);
   const [ error, setError ] = useState(null);
+  const [ text, setText ] = useState('');
 
   const handleScan = (data) => {
     if (status !== null) { return; }
@@ -48,7 +51,7 @@ const Checkin = () => {
   }
 
   return (
-    <div className="parent">
+    <div className="parent checkin">
       <div className="qr-reader">
         <QrReader
           delay={DELAY}
@@ -56,6 +59,18 @@ const Checkin = () => {
           onScan={handleScan}
           style={{ width: "100%" }}
         />
+
+        <div className="manual">
+          <Typography variant="title">Manual Check In</Typography>
+          <TextField
+            label="NetID"
+            value={text}
+            onChange={(e) => setText(e.currentTarget.value)}
+          />
+          <Button onClick={() => { handleScan(text); setText('') }} color="primary" variant="contained">
+            Submit
+          </Button>
+        </div>
       </div>
 
       <Dialog
