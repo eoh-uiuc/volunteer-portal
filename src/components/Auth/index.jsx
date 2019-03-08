@@ -5,18 +5,18 @@ import jwtDecode from 'jwt-decode';
 
 const ADMINS = [
   'admin',
-  'devyesh2',
-  'checkin',
-  'jjxu3',
-  'rsurti2',
-  'mnwilso2',
-  'bharath3',
   'arasteh2',
-  'snagar8',
+  'bharath3',
+  'checkin',
+  'devyesh2',
+  'jjxu3',
   'mgale2',
+  'mnwilso2',
   'painap2',
+  'rsurti2',
+  'snagar8',
+  'sujalfs2',
   'tjavid2',
-  'sujalfs2'
 ];
 
 const check = (verifier) => {
